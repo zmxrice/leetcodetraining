@@ -21,15 +21,16 @@ class Solution(object):
             else:
                 curNode = RandomListNode(cur1.label)
                 d[cur1.label] = curNode
-            randomNode = None
             if cur1.random:
+                randomNode = None
                 if cur1.random.label in d:
                     randomNode = d[cur1.random.label]
                 else:
                     randomNode = RandomListNode(cur1.random.label)
                     d[cur1.random.label] = randomNode
+                curNode.random = randomNode
             cur2.next = curNode
-            curNode.random = randomNode
+            
             cur1, cur2 = cur1.next, cur2.next
         return dummy.next
             
