@@ -30,7 +30,6 @@ class Solution(object):
                     d[cur1.random.label] = randomNode
                 curNode.random = randomNode
             cur2.next = curNode
-            
             cur1, cur2 = cur1.next, cur2.next
         return dummy.next
             
