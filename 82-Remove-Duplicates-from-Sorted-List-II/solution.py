@@ -10,8 +10,6 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        if not head or not head.next:
-            return head
         res, s = [], set()
         cur = head
         while cur:
