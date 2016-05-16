@@ -10,19 +10,22 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        res, s = [], set()
-        cur = head
-        while cur:
-            if cur.val not in s:
-                res.append(cur)
-                s.add(cur.val)
-            elif res and res[-1].val == cur.val:
-                res.pop()
-            cur = cur.next
-        if not res:
-            return None
-        head = res[0]
-        for i in xrange(len(res)-1):
-            res[i].next = res[i+1]
-        res[-1].next = None
-        return head
+        if not head or not head.next:
+            return head
+        cur = dummy = ListNode(0)
+        tag = False
+        fast, slow = head.next, head
+        while fast:
+            if fast.val == slow.val:
+                tag = True
+            elif tag:
+                tag = False
+            else:
+                cur.next = slow
+                cur = cur.next
+            fast, slow = fast.next, slow.next
+        if tag:
+            cur.next = None
+        else:
+            cur.next = slow
+        return dummy.next
