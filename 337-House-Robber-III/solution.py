@@ -8,11 +8,10 @@
 class Solution(object):
     def helper(self, root):
         if not root:
-            return 0,0
-        left, notLeft = self.helper(root.left)
-        right, notRight = self.helper(root.right)
-        #max_val, not including current node
-        return max(left+right, root.val+notLeft+notRight), left+right
+            return 0, 0
+        left, noLeft = self.helper(root.left)
+        right, noRight = self.helper(root.right)
+        return max(left+right, root.val+noLeft+noRight), left+right
         
     def rob(self, root):
         """
