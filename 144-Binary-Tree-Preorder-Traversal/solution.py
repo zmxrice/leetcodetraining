@@ -13,12 +13,13 @@ class Solution(object):
         """
         if not root:
             return []
-        res, stack = [], [root]
-        while not stack == []:
-            node = stack.pop()
-            res.append(node.val)
-            if node.right:
-                stack.append(node.right)
-            if node.left:
-                stack.append(node.left)
+        res, stack = [], []
+        while root or stack:
+            if root:
+                res.append(root.val)
+                if root.right:
+                    stack.append(root.right)
+                root = root.left
+            else:
+                root = stack.pop()
         return res
