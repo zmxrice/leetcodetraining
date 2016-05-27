@@ -18,7 +18,7 @@ class Solution(object):
         while level:
             next, curVals = [], []
             for node in level:
-                curVaks.append(node.val)
+                curVals.append(node.val)
                 if node.left:
                     next.append(node.left)
                 if node.right:
