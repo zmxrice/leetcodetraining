@@ -8,6 +8,10 @@ class Solution(object):
             return 0
         if n <= 2:
             return 1
+        if n == 3:
+            return 2
+        if n == 4:
+            return 4
         dp = [1]*(n+1)
         dp[2] = 2
         dp[3] = 3
