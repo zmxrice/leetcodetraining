@@ -7,6 +7,7 @@ class Solution(object):
         """
         if amount == 0:
             return 0
+        coins = sorted(coins)
         dp = [0]*(amount+1)
         for i in xrange(amount+1):
             candidates = []
@@ -16,6 +17,8 @@ class Solution(object):
                         candidates.append(dp[i-coin]+1)
                 elif i == coin:
                      candidates.append(1)
+                else:
+                    break
             if candidates:
                 dp[i] = min(candidates)
             else:
