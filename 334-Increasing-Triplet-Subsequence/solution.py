@@ -11,10 +11,11 @@ class Solution(object):
         for i in xrange(1, len(nums)):
             if nums[i] <= minVal:
                 minVal = nums[i]
-            elif not minMid is None and minMid < nums[i]:
-                return True
             elif not minMid is None:
-                minMid = min(minMid, nums[i])
+                if minMid < nums[i]:
+                    return True
+                else:
+                    minMid = min(minMid, nums[i])
             else:
                 minMid = nums[i]
         return False
