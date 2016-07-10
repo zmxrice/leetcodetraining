@@ -7,12 +7,14 @@ class Solution(object):
         :type k: int
         :rtype: List[List[int]]
         """
+        if len(nums1) * len(nums2) < k:
+            return [[i, j] for i in nums1 for j in nums2]
         heap = []
         for i in nums1:
             for j in nums2:
                 heapq.heappush(heap, [i+j, i, j])
         res = []
-        for i in xrange(min(k, len(nums1)*len(nums2))):
+        for i in xrange(k):
             cur = heapq.heappop(heap)
             res.append([cur[1], cur[2]])
         return res
