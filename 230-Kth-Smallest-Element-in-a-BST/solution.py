@@ -12,14 +12,15 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        res, stack = [], []
+        stack = []
         while root or stack:
             if root:
                 stack.append(root)
                 root = root.left
             else:
                 root = stack.pop()
-                res.append(root.val)
+                k -= 1
+                if k == 0:
+                    return root.val
                 root = root.right
-        return res[k-1]
                 
