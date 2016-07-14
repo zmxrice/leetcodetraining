@@ -8,13 +8,13 @@ class Solution(object):
             right -= 1
         return True
         
-    def helper(self, s, res, path):
-        if not s:
+    def helper(self, s, res, path, idx):
+        if idx >= len(s):
             res.append(path)
             return
-        for i in xrange(1, len(s)+1):
-            if self.check(s[:i]):
-                self.helper(s[i:], res, path+[s[:i]])
+        for i in xrange(idx+1, len(s)+1):
+            if self.check(s[idx:i]):
+                self.helper(s, res, path+[s[idx:i]], i)
         
     def partition(self, s):
         """
@@ -22,5 +22,5 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         res = []
-        self.helper(s, res, [])
+        self.helper(s, res, [], 0)
         return res
