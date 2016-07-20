@@ -11,28 +11,24 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        cur = dummy = ListNode(0)
+        head = cur = ListNode(0)
         carry = 0
         while l1 and l2:
             cur.next = ListNode((l1.val+l2.val+carry)%10)
             carry = (l1.val+l2.val+carry)/10
             cur, l1, l2 = cur.next, l1.next, l2.next
-
-        while l1 and carry:
+            
+        while l1:
             cur.next = ListNode((l1.val+carry)%10)
             carry = (l1.val+carry)/10
             cur, l1 = cur.next, l1.next
             
-        while l2 and carry:
+        while l2:
             cur.next = ListNode((l2.val+carry)%10)
             carry = (l2.val+carry)/10
             cur, l2 = cur.next, l2.next
             
-        if l1:
-            cur.next = l1
-        if l2:
-            cur.next = l2
         if carry:
             cur.next = ListNode(carry)
-        return dummy.next
             
+        return head.next
