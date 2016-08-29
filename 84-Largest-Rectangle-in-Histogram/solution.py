@@ -4,21 +4,15 @@ class Solution(object):
         :type heights: List[int]
         :rtype: int
         """
-        if not heights:
-            return 0
-        if len(heights) == 1:
-            return heights[0]
         stack = [(0,0)]
-        idx, res = 0, 0
-        for height in heights:
-            idx += 1
-            while height < stack[-1][0]:
+        res = 0
+        for i in xrange(len(heights)):
+            while heights[i] < stack[-1][1]:
                 cur = stack.pop()
-                res = max(res, (idx - stack[-1][1] - 1)*cur[0])
-            stack.append((height, idx))
-
-        for i in xrange(1,len(stack)):
+                res = max(res, cur[1]*(i-stack[-1][0]))
+            stack.append((i+1, heights[i]))
+        #deal with the last item
+        for i in xrange(1, len(stack)):
             cur, pre = stack[i], stack[i-1]
-            res = max(res, cur[0]*(stack[-1][1]-pre[1]))
-            
+            res = max(res, cur[1]*(stack[-1][0]-pre[0]))
         return res
