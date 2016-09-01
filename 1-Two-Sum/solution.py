@@ -5,9 +5,4 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        d = {}
-        for i in xrange(len(nums)):
-            if target-nums[i] in d:
-                return [d[target-nums[i]], i]
-            else:
-                d[nums[i]] = i
+        h
